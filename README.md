@@ -8,7 +8,7 @@
 
 ### 1. Voice-Activated SOS
 - **Secret Code Activation:** Users would trigger an SOS alert by speaking a pre-set secret code.
-- **Emergency Alerts:** The app would send an SOS message, current location, and live location to pre-selected contacts and the nearest police station.
+- **Emergency Alerts:** The app would send an SOS message, including current location and live location, to pre-selected contacts and the nearest police station.
 - **Live Tracking:** Live location sharing would remain active until contacts mark the user as safe.
 
 ### 2. Safest Path Navigation
@@ -45,22 +45,9 @@
 - **Mapping Services:** Potential integration with existing mapping platforms.
 
 ### Additional Features
-- **Educational Resources:** Including information on self-defense, legal rights, and emergency procedures.
+- **Educational Resources:** Including information on self-defence, legal rights, and emergency procedures.
 - **Customization:** Allowing users to personalize emergency contacts and alert settings.
 
 ## Current Status
 
 **Please Note:** Project Raksha is currently in the conceptual stage. No actual implementation or development has begun. This README serves as an outline of the proposed features and considerations for potential future development.
-
-## Contributing
-
-As this project is in the ideation phase, we welcome suggestions, feature ideas, and discussions on implementation strategies. Please feel free to open an issue for any ideas or concerns you'd like to share.
-
-## License
-
-This project concept is shared under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- Inspired by the global need for enhanced women's safety measures.
-- Thanks to all contributors who have shared ideas and feedback on this concept.
