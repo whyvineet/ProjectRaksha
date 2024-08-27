@@ -1,53 +1,60 @@
-# Project Raksha - Women's Safety Mobile Application (Concept)
+# Project Raksha - Women's Safety Algorithm (Concept)
 
 ## Overview
 
-**Project Raksha** is a conceptual mobile application designed to enhance women's safety in various environments. This README outlines the proposed features and considerations for potential future development.
+**Project Raksha** is a conceptual algorithm designed to enhance women's safety in various environments. This README outlines the proposed features and considerations for potential future development, focusing on the algorithmic aspects rather than mobile application implementation.
 
 ## Proposed Features
 
-### 1. Voice-Activated SOS
-- **Secret Code Activation:** Users would trigger an SOS alert by speaking a pre-set secret code.
-- **Emergency Alerts:** The app would send an SOS message, including current location and live location, to pre-selected contacts and the nearest police station.
-- **Live Tracking:** Live location sharing would remain active until contacts mark the user as safe.
+### 1. Voice-Activated SOS Algorithm
+- **Secret Code Recognition:** Develop an algorithm to recognize a pre-set secret code from voice input.
+- **Emergency Alert Generation:** Create an algorithm to generate SOS messages with current and live location data.
+- **Continuous Location Tracking:** Design an algorithm for efficient, continuous location tracking until a safety confirmation is received.
 
-### 2. Safest Path Navigation
-- **Point-Based System:** Routes would be evaluated based on safety landmarks:
+### 2. Secure Route Algorithm
+- **Point-Based System:** Develop an algorithm to evaluate routes based on safety landmarks:
   - Police Station: +10 points
   - Mid-Traffic Area: +8 points
   - Well-Lit Streets: +7 points
-- **Shortest Route Selection:** The app would aim to select the route with the highest safety score while being the shortest available.
+- **Route Optimization:** Create an algorithm to select the route with the highest safety score while minimizing distance.
+- **Dynamic Route Adjustment:** Design an algorithm to update route recommendations based on real-time safety data.
 
-### 3. Real-Time Safety Updates
-- **User Reports:** Users could report unsafe areas to factor into safety scoring.
-- **Dynamic Adjustments:** Safety scores would adjust in real-time based on incidents, time of day, and other factors.
+### 3. Real-Time Safety Update Algorithm
+- **Data Aggregation:** Develop an algorithm to collect and process user-reported safety information.
+- **Safety Score Calculation:** Create an algorithm to dynamically adjust safety scores based on incidents, time of day, and other factors.
 
-### 4. Community Alerts
-- **Proximity Notifications:** Users in the vicinity would be alerted if someone nearby triggers an SOS.
-- **Emergency Numbers:** The app would be pre-loaded with emergency contact numbers, customizable by users.
+### 4. Community Alert Algorithm
+- **Proximity Calculation:** Design an algorithm to efficiently determine nearby users for targeted alerts.
+- **Alert Priority System:** Develop an algorithm to prioritize and distribute emergency alerts effectively.
 
-## Development Considerations
+## Algorithm Development Considerations
 
 ### Technical Challenges
-- **Voice Recognition:** Training for various accents and dialects, especially for diverse regions.
-- **Background Operation:** Enabling the app to run in the background without excessive battery drain.
-- **Data Sources:** Integrating reliable data for safety scoring from official and community sources.
-- **Battery Optimization:** Ensuring efficient use of GPS and background processes.
-- **Scalability:** Designing for large volumes of users, especially during peak usage.
+- **Voice Recognition Accuracy:** Develop algorithms robust enough to handle various accents and dialects.
+- **Efficient Background Processing:** Design algorithms that can run efficiently with minimal resource consumption.
+- **Data Integration:** Create algorithms to effectively integrate and process data from multiple sources for safety scoring.
+- **Scalability:** Develop algorithms capable of handling large volumes of concurrent users and data points.
 
 ### Privacy and Security
-- **Data Encryption:** Implementing end-to-end encryption for all communications.
-- **Accidental Triggers:** Developing safeguards against unintended SOS activations.
-- **User Data Protection:** Ensuring compliance with data protection regulations.
+- **Data Anonymization:** Design algorithms to process and store data in an anonymized format.
+- **False Positive Reduction:** Develop algorithms to minimize false SOS triggers while maintaining sensitivity.
 
-### Partnerships and Integration
-- **Law Enforcement Collaboration:** Establishing partnerships for efficient emergency response.
-- **Mapping Services:** Potential integration with existing mapping platforms.
+### Algorithm Optimization
+- **Machine Learning Integration:** Consider incorporating machine learning algorithms for improved route suggestion and safety scoring over time.
+- **Graph Theory Application:** Utilize graph theory algorithms for efficient route calculation and optimization.
 
-### Additional Features
-- **Educational Resources:** Including information on self-defence, legal rights, and emergency procedures.
-- **Customization:** Allowing users to personalize emergency contacts and alert settings.
+### Additional Algorithmic Features
+- **Predictive Safety Analysis:** Develop algorithms to predict potentially unsafe areas based on historical and real-time data.
+- **User Behavior Learning:** Create algorithms to learn and adapt to individual user patterns for more personalized safety recommendations.
 
 ## Current Status
 
-**Please Note:** Project Raksha is currently in the conceptual stage. No actual implementation or development has begun. This README serves as an outline of the proposed features and considerations for potential future development.
+**Please Note:** Project Raksha is currently in the conceptual stage, focusing on algorithm development. No actual implementation or mobile application development has begun. This README serves as an outline of the proposed algorithmic features and considerations for potential future development.
+
+## Next Steps
+
+1. Develop pseudocode for each core algorithm.
+2. Implement and test algorithms in a controlled environment.
+3. Refine algorithms based on test results and simulated scenarios.
+4. Explore potential integrations with existing mapping and location services.
+5. Consider future mobile application development once the algorithmic foundation is solid.
