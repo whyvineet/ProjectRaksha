@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Route Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Route Planner</h1>
+        <div class="content">
+            <div class="grid-container">
+                <canvas id="grid-canvas"></canvas>
+            </div>
+            <div class="sidebar">
+                <div class="controls">
+                    <h3>Assign Safety Points</h3>
+                    <div id="point-buttons" class="button-grid"></div>
+                    <div class="route-controls">
+                        <button id="select-start">Select Start</button>
+                        <button id="select-end">Select End</button>
+                        <button id="find-path">Find Safest Route</button>
+                        <button id="reset">Reset Grid</button>
+                    </div>
+                </div>
+                <div id="info-panel">
+                    <h3>Route Information</h3>
+                    <p id="safety-score">Safety Score: 0</p>
+                    <p id="route-distance">Distance: 0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
