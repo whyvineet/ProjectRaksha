@@ -100,9 +100,9 @@ function resetGrid() {
 }
 
 // Update the info panel
-function updateInfoPanel(safetyScore, distance) {
+function updateInfoPanel(safetyScore, distance, mode) {
     safetyScoreElement.textContent = `Safety Score: ${safetyScore}`;
-    routeDistanceElement.textContent = `Distance: ${distance}`;
+    routeDistanceElement.textContent = `Distance: ${distance} (${mode} mode)`;
 }
 
 // Get neighboring cells
@@ -119,16 +119,30 @@ function getNeighbors(id) {
     return neighbors;
 }
 
-// Heuristic function for A* algorithm
+// Heuristic function for A* algorithm (Manhattan distance)
 function heuristic(a, b) {
     const [ax, ay] = [a % gridSize, Math.floor(a / gridSize)];
     const [bx, by] = [b % gridSize, Math.floor(b / gridSize)];
     return Math.abs(ax - bx) + Math.abs(ay - by);
 }
 
-// Find the best path using A* algorithm
+// Improved A* algorithm considering both safety and distance
 function findBestPath(startId, endId) {
-    let openSet = [startId];
+    const shortestPath = findPath(startId, endId, 'shortest');
+    const safestPath = findPath(startId, endId, 'safest');
+
+    const shortestRatio = shortestPath.safetyScore / (shortestPath.path.length - 1);
+    const safestRatio = safestPath.safetyScore / (safestPath.path.length - 1);
+
+    if (safestRatio - shortestRatio > 0.5) {
+        return { ...safestPath, mode: 'safest' };
+    } else {
+        return { ...shortestPath, mode: 'shortest' };
+    }
+}
+
+function findPath(startId, endId, mode) {
+    const openSet = [startId];
     const cameFrom = {};
     const gScore = Array(gridSize * gridSize).fill(Infinity);
     const fScore = Array(gridSize * gridSize).fill(Infinity);
@@ -138,25 +152,16 @@ function findBestPath(startId, endId) {
     fScore[startId] = heuristic(startId, endId);
 
     while (openSet.length > 0) {
-        let current = openSet.reduce((lowest, id) => fScore[id] < fScore[lowest] ? id : lowest, openSet[0]);
+        const current = openSet.reduce((a, b) => fScore[a] < fScore[b] ? a : b);
 
         if (current === endId) {
-            const path = [];
-            let temp = endId;
-            while (temp in cameFrom) {
-                path.push(temp);
-                temp = cameFrom[temp];
-            }
-            path.push(startId);
-            path.reverse();
-            return { path, safetyScore: safetyScore[endId] };
+            const path = reconstructPath(cameFrom, current);
+            return { path, safetyScore: safetyScore[current] };
         }
 
-        openSet = openSet.filter(id => id !== current);
-        const neighbors = getNeighbors(current);
+        openSet.splice(openSet.indexOf(current), 1);
 
-        for (const neighbor of neighbors) {
-            // Check if the neighbor is an active cell (non-zero value)
+        for (const neighbor of getNeighbors(current)) {
             if (gridPoints[neighbor] === 0) continue;
 
             const tentativeGScore = gScore[current] + 1;
@@ -166,7 +171,12 @@ function findBestPath(startId, endId) {
                 cameFrom[neighbor] = current;
                 gScore[neighbor] = tentativeGScore;
                 safetyScore[neighbor] = tentativeSafetyScore;
-                fScore[neighbor] = gScore[neighbor] - safetyScore[neighbor] / 10 + heuristic(neighbor, endId);
+                
+                if (mode === 'shortest') {
+                    fScore[neighbor] = gScore[neighbor] + heuristic(neighbor, endId);
+                } else { // 'safest'
+                    fScore[neighbor] = gScore[neighbor] - (safetyScore[neighbor] * 2) + heuristic(neighbor, endId);
+                }
 
                 if (!openSet.includes(neighbor)) {
                     openSet.push(neighbor);
@@ -176,6 +186,16 @@ function findBestPath(startId, endId) {
     }
 
     return { path: [], safetyScore: 0 };
+}
+
+// Helper function to reconstruct the path
+function reconstructPath(cameFrom, current) {
+    const path = [current];
+    while (current in cameFrom) {
+        current = cameFrom[current];
+        path.unshift(current);
+    }
+    return path;
 }
 
 // Highlight the found path
@@ -246,12 +266,13 @@ findPathButton.addEventListener('click', () => {
     if (startCell && endCell) {
         const startId = startCell.y * gridSize + startCell.x;
         const endId = endCell.y * gridSize + endCell.x;
-        const { path, safetyScore } = findBestPath(startId, endId);
-        highlightPath(path);
-        if (path.length === 0) {
+
+        const result = findBestPath(startId, endId);
+        highlightPath(result.path);
+        if (result.path.length === 0) {
             updateInfoPanel('N/A', 'N/A');
         } else {
-            updateInfoPanel(safetyScore, path.length - 1);
+            updateInfoPanel(result.safetyScore, result.path.length - 1, result.mode);
         }
     }
 });
